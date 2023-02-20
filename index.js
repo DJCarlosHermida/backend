@@ -1,30 +1,43 @@
-class TicketManager {
-    #precioBaseDeGanancia = 0.65
+class ProductManager {
+    #servicios = 0.65
+    
     constructor() {
-        this.eventos = []
+        this.products = []
     }
-    getEventos() {
-        return this.eventos
+    getProduct() {
+        try {
+            console.log(this.products);
+          } catch (error) {
+            console.log(`No se pudo cargar los productos: ${error.message}`);
+          }
     }
-    agregarEvento(nombre, lugar, precio, capacidad = 150, fecha = new Date()) {
-        const id = this.eventos.length === 0 ? 1 : this.eventos[this.eventos.length - 1].id + 1
+    addProduct(title, description, price, thumbnail = 'imágen no disponible', code, stock = 30) {
 
-        const evento = {
-            id,
-            nombre,
-            lugar,
-            precio: precio / this.#precioBaseDeGanancia,
-            capacidad,
-            fecha,
-            participantes: []
+
+        const product = {
+            id: this.#generarId(),
+            title: title,
+            description: description,
+            price: price / this.#servicios,
+            thumbnail,
+            stock,
+            code
         }
-        this.eventos.push(evento)
+        this.products.push(product)
 
+    }
+    getProductById(id){
+        return this.products.find(this.products.id(1))
+    }
+    #generarId() {
+        const id = this.products.length === 0 ? 1 : this.products[this.products.length - 1].id + 1
+        return id
     }
 }
 
-const manager = new TicketManager()
-    manager.agregarEvento('XV', 'Young', 13000, 150)
-    manager.agregarEvento('XXX', 'Montevideo', 1260, 1250)
-    manager.agregarEvento('Show', 'Young', 60, 1150)
+const manager = new ProductManager()
+manager
+manager.addProduct('Parlantes JBL', 'Parlantes JBL de 15"', 60000, 'Imágen No Disponible', 60)
+manager.addProduct('Pantalla Gigante', 'Ideal para proyectar videoClips durante la fiesta', 23000, 'Imágen No Disponible', 2)
+manager.addProduct('Iluminación LED', 'Todo en iluminación para fiestas', 950, 'Imágen No Disponible', 13)
 console.log(manager);
