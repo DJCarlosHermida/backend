@@ -1,13 +1,14 @@
 class ProductManager {
     #servicios = 0.65
     constructor() {
-        this.products = []
+        this.products = [],
+        this.id = 0
     }
 
     getProducts() {
-        if (this.products.length == 0) {
-            throw new Error('No Hay Productos')
-        }
+        // if (this.products.length == 0) {
+        //     throw new Error('No Hay Productos')
+        // }
         return this.products
         
     }
@@ -22,8 +23,16 @@ class ProductManager {
             stock,
             code: 2023 + this.#generarId()
         }
-        this.products.push(product)
-
+        if (!product.price || !product.title || !product.description || !product.thumbnail || !product.stock || !product.code){
+            console.log('Error: Campos Obligatorios')
+                return
+        }
+        if (this.products.some((prod) => prod.code === product.code)) {
+            console.log('Error: El Producto Ya Existe');
+        }
+        this.id++
+        const newProduct = {id: this.id, ...product}
+        this.products.push(newProduct)
     }
 
     getProductById(id) {
@@ -51,4 +60,4 @@ console.log('Producto Id 1: ',manager.getProductById(1));
 console.log('Producto Id 2: ',manager.getProductById(2));
 console.log('Producto Id 3: ',manager.getProductById(3));
 console.log('Producto Id 4: ',manager.getProductById(4));
-console.log(manager.getProductById(58));
+console.log(manager.getProductById(5));
