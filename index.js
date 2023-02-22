@@ -4,20 +4,20 @@ class ProductManager {
         this.products = []
     }
 
-    getProduct() {
-        try {
-            console.log(this.products);
-        } catch (error) {
-            console.log(`No se pudo cargar los productos: ${error.message}`);
+    getProducts() {
+        if (this.products.length == 0) {
+            throw new Error('No Hay Productos')
         }
+        return this.products
+        
     }
     
-    addProduct(title, description, price, thumbnail = 'imágen no disponible', stock = 30) {
+    addProduct(title, description, price, thumbnail = 'imágen no disponible', stock = 30){
         const product = {
             id: this.#generarId(),
             title: title,
             description: description,
-            price: (price / this.#servicios).toFixed(),
+            price: (price / this.#servicios).toFixed(2),
             thumbnail,
             stock,
             code: 2023 + this.#generarId()
@@ -27,7 +27,7 @@ class ProductManager {
     }
 
     getProductById(id) {
-        return this.products.find(this.products.id(1))
+        return this.products.find(this.products.id())
     }
 
     #generarId() {
@@ -41,4 +41,4 @@ manager.addProduct('Parlantes JBL', 'Parlantes JBL de 15"', 13000, 'Imágen No D
 manager.addProduct('Pantalla Gigante', 'Ideal para proyectar videoClips durante la fiesta', 23000, 'Imágen No Disponible', 2)
 manager.addProduct('Iluminación LED', 'Todo en iluminación para fiestas', 950, 'Imágen No Disponible', 13)
 manager.addProduct('Monitores Studio Rokit', 'Monitores de Studio alto rendimiento', 250, 'Imágen No Disponible', 23)
-console.log(manager);
+console.log('Productos: ',manager.getProducts());
