@@ -27,7 +27,12 @@ class ProductManager {
     }
 
     getProductById(id) {
-        return this.products.find(this.products.id())
+        const product = this.products.find((prod) => prod.id === id)
+            if (product) {
+                return product
+            } else {
+                console.log('Error: No se encontró producto!');
+            }
     }
 
     #generarId() {
@@ -42,3 +47,8 @@ manager.addProduct('Pantalla Gigante', 'Ideal para proyectar videoClips durante 
 manager.addProduct('Iluminación LED', 'Todo en iluminación para fiestas', 950, 'Imágen No Disponible', 13)
 manager.addProduct('Monitores Studio Rokit', 'Monitores de Studio alto rendimiento', 250, 'Imágen No Disponible', 23)
 console.log('Productos: ',manager.getProducts());
+console.log('Producto Id 1: ',manager.getProductById(1));
+console.log('Producto Id 2: ',manager.getProductById(2));
+console.log('Producto Id 3: ',manager.getProductById(3));
+console.log('Producto Id 4: ',manager.getProductById(4));
+console.log(manager.getProductById(58));
