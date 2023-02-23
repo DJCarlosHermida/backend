@@ -23,11 +23,11 @@ class ProductManager {
             stock,
             code: 2023 + this.#generarId()
         }
-        /* CAMBIAR */
+
         if (!product.price || !product.title || !product.description || !product.thumbnail || !product.stock || !product.code) {
             return (console.log('Error: Campos Obligatorios'))
         }
-        /* CAMBIAR */
+
         if (this.products.some((prod) => prod.code === product.code)) {
             return (console.log('Error: El Producto Ya Existe'))
         }
@@ -37,11 +37,9 @@ class ProductManager {
     }
 
     getProductById(id) {
-        /* CAMBIAR */
-        const product = this.products.find((prod) => prod.id === id)
-        if (product) {
-            return (product)
-        } else {console.log('Error: No se encontró producto!')}
+        const product = this.products.find((product) => product.id === id)
+        if (!product) throw new Error('Producto No Encontrado') 
+            return product;
     }
 
     #generarId() {
@@ -61,4 +59,4 @@ console.log('Producto Id 1: ', manager.getProductById(1));
 console.log('Producto Id 2: ', manager.getProductById(2));
 console.log('Producto Id 3: ', manager.getProductById(3));
 console.log('Producto Id 4: ', manager.getProductById(4));
-console.log(manager.getProductById(50));
+console.log(manager.getProductById(37));
