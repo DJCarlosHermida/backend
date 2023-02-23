@@ -25,11 +25,12 @@ class ProductManager {
         }
 
         if (!product.price || !product.title || !product.description || !product.thumbnail || !product.stock || !product.code) {
-            return (console.log('Error: Campos Obligatorios'))
+             throw new Error(' Campos Obligatorios')
+             
         }
 
         if (this.products.some((prod) => prod.code === product.code)) {
-            return (console.log('Error: El Producto Ya Existe'))
+            throw new Error(' El Producto Ya Existe')
         }
         this.id++
         const newProduct = { id: this.id, ...product }
@@ -37,7 +38,7 @@ class ProductManager {
     }
 
     getProductById(id) {
-        const product = this.products.find((product) => product.id === id)
+        const product = this.products.find(product => product.id === id)
         if (!product) throw new Error('Producto No Encontrado') 
             return product;
     }
@@ -59,4 +60,4 @@ console.log('Producto Id 1: ', manager.getProductById(1));
 console.log('Producto Id 2: ', manager.getProductById(2));
 console.log('Producto Id 3: ', manager.getProductById(3));
 console.log('Producto Id 4: ', manager.getProductById(4));
-console.log(manager.getProductById(37));
+console.log(manager.getProductById());
