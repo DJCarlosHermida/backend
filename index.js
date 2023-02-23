@@ -60,4 +60,4 @@ console.log('Producto Id 1: ', manager.getProductById(1));
 console.log('Producto Id 2: ', manager.getProductById(2));
 console.log('Producto Id 3: ', manager.getProductById(3));
 console.log('Producto Id 4: ', manager.getProductById(4));
-console.log(manager.getProductById());
+console.log(manager.getProductById(37));
