@@ -21,7 +21,7 @@
 //     array.filter()
 
 // function cbFun(param){
-//     return `el usuario tocó el ${param}`
+//     return `el usuario inició el ${param}`
 // }
 
 // function funDos (p1, callback) {
@@ -29,7 +29,7 @@
 //     return respuesta
 // }
 
-// console.log(funDos('nepe', cbFun));
+// console.log(funDos('curso', cbFun));
 
 const n = 50
 
