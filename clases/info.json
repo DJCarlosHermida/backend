@@ -1,0 +1,24 @@
+{
+    "contenido": "{\n  \"name\": \"proyecto_backend\",\n  \"version\": \"1.0.0\",\n  \"description\": \"\",\n  \"main\": \"index.js\",\n  \"scripts\": {\n    \"test\": \"echo \\\"Error: no test specified\\\" && exit 1\"\n  },\n  \"repository\": {\n    \"type\": \"git\",\n    \"url\": \"git+https://github.com/DJCarlosHermida/proyecto_backend.git\"\n  },\n  \"keywords\": [],\n  \"author\": \"\",\n  \"license\": \"ISC\",\n  \"bugs\": {\n    \"url\": \"https://github.com/DJCarlosHermida/proyecto_backend/issues\"\n  },\n  \"homepage\": \"https://github.com/DJCarlosHermida/proyecto_backend#readme\"\n}\n",
+    "contenidoOb": {
+        "name": "proyecto_backend",
+        "version": "1.0.0",
+        "description": "",
+        "main": "index.js",
+        "scripts": {
+            "test": "echo \"Error: no test specified\" && exit 1"
+        },
+        "repository": {
+            "type": "git",
+            "url": "git+https://github.com/DJCarlosHermida/proyecto_backend.git"
+        },
+        "keywords": [],
+        "author": "",
+        "license": "ISC",
+        "bugs": {
+            "url": "https://github.com/DJCarlosHermida/proyecto_backend/issues"
+        },
+        "homepage": "https://github.com/DJCarlosHermida/proyecto_backend#readme"
+    },
+    "size": 510
+}
