@@ -1,6 +1,8 @@
 const fs = require('fs')
 const path = 'productos.json'
 
+
+fs.promises
 class ProductManager {
     #servicios = 0.65
     constructor(path) {
@@ -12,7 +14,7 @@ class ProductManager {
     getProducts = async () => {
         if (fs.existsSync(path)) {
             const info = await fs.promises.readFile(this.path, 'utf-8')
-            const products = JSON.parse(info)
+            const products = JSON.parse()
             return (products)
         } else {
             console.log('el archivo no existe');
@@ -45,7 +47,7 @@ class ProductManager {
     }
 
     getProductById = async (id) => {
-        const products = await this.getProductById()
+        const products = await this.getProducts()
         const product = products.find(product => product.id === id)
         if (product) {
             return (product)
@@ -56,12 +58,12 @@ class ProductManager {
 
     updateProduct = async (id, obj) => {
         const products = await this.getProducts();
-        const indexProduct = products.findIndex((p) => p.id === id);
-        if (indexProduct === -1) {
+        const productIn = products.findIndex((p) => p.id === id);
+        if (productIn === -1) {
             return console.log("product not found");
         }
-        const productUpdated = { ...products[indexProduct], ...obj };
-        products.splice(indexProduct, 1, productUpdated);
+        const productUpdated = { ...products[productIn], ...obj };
+        products.splice(productIn, 1, productUpdated);
         await fs.promises.writeFile(this.path, JSON.stringify(products));
         return console.log("product updated");
     }
@@ -90,25 +92,24 @@ class ProductManager {
 
 async function add() {
     const manager = new ProductManager(path)
-    manager.addProduct('Parlantes JBL', 'Parlantes JBL de 15"', 13000, 'Imágen No Disponible', 60)
-    manager.addProduct('Pantalla Gigante', 'Ideal para proyectar videoClips durante la fiesta', 23000, 'Imágen No Disponible', 2)
-    manager.addProduct('Iluminación LED', 'Todo en iluminación para fiestas', 950, 'Imágen No Disponible', 13)
-    manager.addProduct('Monitores Studio Rokit', 'Monitores de Studio alto rendimiento', 250, 'Imágen No Disponible', 23)
+    await manager.addProduct('Parlantes JBL', 'Parlantes JBL de 15"', 13000, 'Imágen No Disponible', 60)
+    await manager.addProduct('Pantalla Gigante', 'Ideal para proyectar videoClips durante la fiesta', 23000, 'Imágen No Disponible', 2)
+    await manager.addProduct('Iluminación LED', 'Todo en iluminación para fiestas', 950, 'Imágen No Disponible', 13)
+    await manager.addProduct('Monitores Studio Rokit', 'Monitores de Studio alto rendimiento', 250, 'Imágen No Disponible', 23)
 
-    await manager.addProduct(product1);
-    await manager.addProduct(product2);
-    await manager.addProduct(product3);
-    await manager.addProduct(product4);
-    await manager.addProduct(product5);
+    
     const products = await manager.getProducts();
-    console.log(products);
 }
+
+add()
 
 async function getById() {
     const manager = new ProductManager(path);
     console.log(await manager.getProductById(3))
     console.log(await manager.getProductById(11))
 }
+
+getById()
 
 async function deleteById() {
     const manager = new ProductManager(path);
@@ -125,3 +126,4 @@ async function update() {
     await manager.updateProduct(3, { price: 550 });
     await manager.updateProduct(2, { stock: 10 });
 }
+
