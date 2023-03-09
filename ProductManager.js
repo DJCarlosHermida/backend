@@ -14,7 +14,7 @@ class ProductManager {
 
     getProducts = async () => {
         if (fs.existsSync(path)) {
-            const fileRead = await fs.promises.readFile(this.path, 'utf-8')
+            const fileRead = await fs.promises.readFile('productos.json', 'utf-8')
             const product = JSON.parse(fileRead.toString())
 
             return (product)
@@ -55,7 +55,7 @@ class ProductManager {
         const products = await this.getProducts()
         const product = products.find(product => product.id === id)
         if (product) {
-            return (products)
+            return (product)
         } else {
             return ('El Producto No Exíste')
         }
@@ -114,16 +114,18 @@ add()
 
 async function getById() {
     const manager = new ProductManager(path);
-    console.log(await manager.getProductById(3))
-    console.log(await manager.getProductById(11))
+    console.log(await manager.getProductById(6))
+    console.log(await manager.getProductById(1))
 }
 
 getById()
 
 async function deleteById() {
     const manager = new ProductManager(path);
-    await manager.deleteProduct(3);
+    await manager.deleteProduct(2);
 }
+
+deleteById()
 
 async function deleteAll() {
     const manager = new ProductManager(path);
@@ -132,8 +134,9 @@ async function deleteAll() {
 
 async function update() {
     const manager = new ProductManager(path);
-    await manager.updateProduct(3, { price: 550 });
-    await manager.updateProduct(2, { stock: 10 });
+    await manager.updateProduct(1, { price: 999999 })
 }
+
+update()
 
 console.log(fs.existsSync('productos.json'));
