@@ -2,8 +2,6 @@ const fs = require('fs')
 const path = 'productos.json'
 //fs.promises.writeFile('productos.json', JSON.stringify(path, null, 4))
 
-
-
 class ProductManager {
     #servicios = 0.65
     constructor(path) {
@@ -97,7 +95,7 @@ class ProductManager {
 
 async function add() {
     const manager = new ProductManager(path)
-    await manager.addProduct('Parlantes JBL', 'Parlantes JBL de 15"', 13000, 'Imágen No Disponible', 60),
+    await manager.addProduct('Parlantes JBL', 'Parlantes JBL de 15"', 1000000, 'Imágen No Disponible', 60),
     await manager.addProduct('Pantalla Gigante', 'Ideal para proyectar videoClips durante la fiesta', 23000, 'Imágen No Disponible', 2),
     await manager.addProduct('Iluminación LED', 'Todo en iluminación para fiestas', 950, 'Imágen No Disponible', 13),
     await manager.addProduct('Monitores Studio Rokit', 'Monitores de Studio alto rendimiento', 250, 'Imágen No Disponible', 23),
@@ -122,7 +120,7 @@ getById()
 
 async function deleteById() {
     const manager = new ProductManager(path);
-    await manager.deleteProduct(2);
+    await manager.deleteProduct(1);
 }
 
 deleteById()
@@ -134,7 +132,7 @@ async function deleteAll() {
 
 async function update() {
     const manager = new ProductManager(path);
-    await manager.updateProduct(1, { price: 999999 })
+    await manager.updateProduct(1, { price: 9999999 })
 }
 
 update()
