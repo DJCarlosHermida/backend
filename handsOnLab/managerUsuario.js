@@ -25,7 +25,7 @@ class ManagerUsuario {
             const id = this.#generarId(users)
             const newUser = { id, ...obj }
 
-            newUser.contraseña = crypto.createHmac('sha256')
+            newUser.contraseña = crypto.createHmac('sha256',)
 
 
 
