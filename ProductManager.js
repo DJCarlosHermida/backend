@@ -1,5 +1,7 @@
 const fs = require('fs')
 const path = 'productos.json'
+fs.promises.writeFile('productos.json', JSON.stringify(path))
+
 
 
 class ProductManager {
@@ -43,6 +45,9 @@ class ProductManager {
         this.id++
         const newProduct = { id: this.id, ...product }
         this.products.push(newProduct)
+
+        let data =  JSON.stringify(this.products);
+        fs.writeFileSync('productos.json', data);
     }
 
     getProductById = async (id) => {
@@ -97,7 +102,7 @@ async function add() {
     await manager.addProduct('Monitores Studio Rokit', 'Monitores de Studio alto rendimiento', 250, 'Imágen No Disponible', 23)
     await manager.addProduct('Pantalla Gigante', 'Pantalla LED de 300 pulgadas 4k', 47250, 'Imágen No Disponible', 4)
 
-    const products = await manager.getProducts();
+    const products = manager
     
 }
 
