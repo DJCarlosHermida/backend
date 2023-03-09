@@ -2,7 +2,6 @@ const fs = require('fs')
 const path = 'productos.json'
 
 
-fs.promises
 class ProductManager {
     #servicios = 0.65
     constructor(path) {
@@ -14,10 +13,10 @@ class ProductManager {
     getProducts = async () => {
         if (fs.existsSync(path)) {
             const info = await fs.promises.readFile(this.path, 'utf-8')
-            const products = JSON.parse()
+            const products = this.products
             return (products)
         } else {
-            console.log('el archivo no existe');
+            console.log('El Archivo No Existe');
             return []
         }
     }
@@ -50,9 +49,9 @@ class ProductManager {
         const products = await this.getProducts()
         const product = products.find(product => product.id === id)
         if (product) {
-            return (product)
+            return (products)
         } else {
-            return ('el producto no exíste')
+            return ('El Producto No Exíste')
         }
     }
 
@@ -60,20 +59,20 @@ class ProductManager {
         const products = await this.getProducts();
         const productIn = products.findIndex((p) => p.id === id);
         if (productIn === -1) {
-            return console.log("product not found");
+            return console.log("Product Not Found");
         }
         const productUpdated = { ...products[productIn], ...obj };
         products.splice(productIn, 1, productUpdated);
         await fs.promises.writeFile(this.path, JSON.stringify(products));
-        return console.log("product updated");
+        return console.log("Product UpDated");
     }
 
     deleteProducts = async () => {
         if (fs.existsSync(this.path)) {
             await fs.promises.unlink(this.path);
-            return "products deleted";
+            return "Products Deleted";
         } else {
-            return "file doesn't exist";
+            return "The File No Exist";
         }
     }
 
@@ -81,10 +80,10 @@ class ProductManager {
         const products = await this.getProducts();
         const newProductsArray = products.filter((p) => p.id !== id);
         await fs.promises.writeFile(this.path, JSON.stringify(newProductsArray));
-        console.log("product deleted");
+        console.log("Product Deleted");
     }
 
-    #generarId = (products) => {
+    #generarId = () => {
         let id = this.products.length === 0 ? 1 : this.products[this.products.length - 1].id + 1
         return id
     }
@@ -96,10 +95,13 @@ async function add() {
     await manager.addProduct('Pantalla Gigante', 'Ideal para proyectar videoClips durante la fiesta', 23000, 'Imágen No Disponible', 2)
     await manager.addProduct('Iluminación LED', 'Todo en iluminación para fiestas', 950, 'Imágen No Disponible', 13)
     await manager.addProduct('Monitores Studio Rokit', 'Monitores de Studio alto rendimiento', 250, 'Imágen No Disponible', 23)
+    await manager.addProduct('Pantalla Gigante', 'Pantalla LED de 300 pulgadas 4k', 47250, 'Imágen No Disponible', 4)
 
-    
     const products = await manager.getProducts();
+    
 }
+
+ //fs.promises.writeFile('productos.json', JSON.stringify(path))
 
 add()
 
@@ -127,3 +129,4 @@ async function update() {
     await manager.updateProduct(2, { stock: 10 });
 }
 
+console.log(fs.existsSync('productos.json'));
