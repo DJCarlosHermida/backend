@@ -1,6 +1,5 @@
 const fs = require('fs')
 const path = 'productos.json'
-//fs.promises.writeFile('productos.json', JSON.stringify(path, null, 4))
 
 class ProductManager {
     #servicios = 0.65
@@ -67,7 +66,7 @@ class ProductManager {
         }
         const productUpdated = { ...products[productIn], ...obj };
         products.splice(productIn, 1, productUpdated);
-        await fs.promises.writeFile(this.path, JSON.stringify(products));
+        await fs.promises.writeFile(this.path, JSON.stringify(products))
         return console.log("Product UpDated");
     }
 
@@ -105,8 +104,6 @@ async function add() {
     const products = manager
     
 }
-
- //fs.promises.writeFile('productos.json', JSON.stringify(path))
 
 add()
 
