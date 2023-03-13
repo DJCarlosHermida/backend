@@ -13,11 +13,12 @@ class ProductManager {
 
     getProducts = async () => {
         if (fs.existsSync(path)) {
-            const info = await fs.promises.readFile(this.path, 'utf-8')
-            const products = JSON.parse(info)
-            return (products)
+            const fileRead = await fs.promises.readFile('productos.json', 'utf-8')
+            const product = JSON.parse(fileRead.toString())
+
+            return (product)
         } else {
-            console.log('el archivo no existe');
+            console.log('El Archivo No Existe');
             return []
         }
     }
@@ -42,8 +43,7 @@ class ProductManager {
         }
         this.id++
         const newProduct = { id: this.id, ...product }
-        // this.products.push(newProduct)
-        fs.promises.writeFile(this.path, JSON.stringify(this.products, null, 4))
+        this.products.push(newProduct)
     }
 
     getProductById = async (id) => {
@@ -52,64 +52,76 @@ class ProductManager {
         if (product) {
             return (product)
         } else {
-            return ('el producto no exíste')
+            return ('El Producto No Exíste')
         }
     }
 
     updateProduct = async (id, obj) => {
         const products = await this.getProducts();
-        const indexProduct = products.findIndex((p) => p.id === id);
-        if (indexProduct === -1) {
-            return console.log("product not found");
+        const productIn = products.findIndex((p) => p.id === id);
+        if (productIn === -1) {
+            return console.log("Product Not Found");
         }
-        const productUpdated = { ...products[indexProduct], ...obj };
-        products.splice(indexProduct, 1, productUpdated);
-        await fs.promises.writeFile(this.path, JSON.stringify(products));
-        return console.log("product updated");
+        const productUpdated = { ...products[productIn], ...obj };
+        products.splice(productIn, 1, productUpdated);
+        await fs.promises.writeFile(this.path, JSON.stringify(products))
+        return console.log("Product UpDated");
     }
 
     deleteProducts = async () => {
         if (fs.existsSync(this.path)) {
             await fs.promises.unlink(this.path);
-            return "products deleted";
+            return "Products Deleted";
         } else {
-            return "file doesn't exist";
+            return "The File No Exist";
         }
     }
 
     deleteProduct = async (id) => {
         const products = await this.getProducts();
-        const newProducts = products.filter((prod) => prod.id !== id);
-        await fs.promises.writeFile(this.path, JSON.stringify(newProducts));
+        const newProductsArray = products.filter((p) => p.id !== id);
+        await fs.promises.writeFile(this.path, JSON.stringify(newProductsArray));
         console.log("product deleted");
     }
 
     #generarId = (products) => {
-        const id = this.products.length === 0 ? 1 : this.products[this.products.length - 1].id + 1
+        let id = this.products.length === 0 ? 1 : this.products[this.products.length - 1].id + 1
         return id
     }
 }
 
 async function add() {
     const manager = new ProductManager(path)
-    await manager.addProduct('Parlantes JBL', 'Parlantes JBL de 15"', 13000, 'Imágen No Disponible', 60)
-    await manager.addProduct('Pantalla Gigante', 'Ideal para proyectar videoClips durante la fiesta', 23000, 'Imágen No Disponible', 2)
-    await manager.addProduct('Iluminación LED', 'Todo en iluminación para fiestas', 950, 'Imágen No Disponible', 13)
-    await manager.addProduct('Monitores Studio Rokit', 'Monitores de Studio alto rendimiento', 250, 'Imágen No Disponible', 23)
+    manager.addProduct('Parlantes JBL', 'Parlantes JBL de 15"', 13000, 'Imágen No Disponible', 60)
+    manager.addProduct('Pantalla Gigante', 'Ideal para proyectar videoClips durante la fiesta', 23000, 'Imágen No Disponible', 2)
+    manager.addProduct('Iluminación LED', 'Todo en iluminación para fiestas', 950, 'Imágen No Disponible', 13)
+    manager.addProduct('Monitores Studio Rokit', 'Monitores de Studio alto rendimiento', 250, 'Imágen No Disponible', 23)
 
-    
+    await manager.addProduct(product1);
+    await manager.addProduct(product2);
+    await manager.addProduct(product3);
+    await manager.addProduct(product4);
+    await manager.addProduct(product5);
+    const products = await manager.getProducts();
+    console.log(products);
 }
+
+add()
 
 async function getById() {
     const manager = new ProductManager(path);
-    console.log(await manager.getProductById(3))
-    console.log(await manager.getProductById(11))
+    console.log(await manager.getProductById(6))
+    console.log(await manager.getProductById(1))
 }
+
+getById()
 
 async function deleteById() {
     const manager = new ProductManager(path);
     await manager.deleteProduct(1);
 }
+
+deleteById()
 
 async function deleteAll() {
     const manager = new ProductManager(path);
@@ -118,6 +130,9 @@ async function deleteAll() {
 
 async function update() {
     const manager = new ProductManager(path);
-    await manager.updateProduct(3, { price: 550 });
-    await manager.updateProduct(2, { stock: 10 });
+    await manager.updateProduct(1, { price: 9999999 })
 }
+
+update()
+
+console.log(fs.existsSync('productos.json'));

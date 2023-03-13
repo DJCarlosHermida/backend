@@ -1,6 +1,6 @@
 class ProductManager {
     #servicios = 0.65
-    constructor() {
+    constructor(path) {
         this.products = [],
             this.id = 0
     }

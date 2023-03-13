@@ -11,7 +11,7 @@ class ManagerUsuarios {
         } else {
             console.log('archivo no existe')
             return []
-        }
+        } 
     }
     crearUruario = async (usuario) => {
         const usuarios = await this.consultarUsuarios()
@@ -41,6 +41,7 @@ const usuario2 = {
 async function prueba() {
     const manager = new ManagerUsuarios()
     await manager.crearUruario(usuario1)
+    await manager.crearUruario(usuario2)
     const usuarios = await manager.consultarUsuarios()
     console.log(usuarios);
 }
