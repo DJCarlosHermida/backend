@@ -1,8 +1,7 @@
 const fs = require('fs')
 const path = 'productos.json'
 
-fs.promises.writeFile('info.json', JSON.stringify(info))
-
+fs.promises
 class ProductManager {
     #servicios = 0.65
     constructor(path) {
@@ -35,6 +34,7 @@ class ProductManager {
 
         if (!product.price || !product.title || !product.description || !product.thumbnail || !product.stock || !product.code) {
             throw new Error(' Campos Obligatorios')
+
         }
 
         if (this.products.some((prod) => prod.code === product.code)) {
@@ -42,8 +42,7 @@ class ProductManager {
         }
         this.id++
         const newProduct = { id: this.id, ...product }
-        // this.products.push(newProduct)
-        fs.promises.writeFile(this.path, JSON.stringify(this.products, null, 4))
+        this.products.push(newProduct)
     }
 
     getProductById = async (id) => {
@@ -58,12 +57,12 @@ class ProductManager {
 
     updateProduct = async (id, obj) => {
         const products = await this.getProducts();
-        const indexProduct = products.findIndex((p) => p.id === id);
-        if (indexProduct === -1) {
+        const productIn = products.findIndex((p) => p.id === id);
+        if (productIn === -1) {
             return console.log("product not found");
         }
-        const productUpdated = { ...products[indexProduct], ...obj };
-        products.splice(indexProduct, 1, productUpdated);
+        const productUpdated = { ...products[productIn], ...obj };
+        products.splice(productIn, 1, productUpdated);
         await fs.promises.writeFile(this.path, JSON.stringify(products));
         return console.log("product updated");
     }
@@ -79,13 +78,13 @@ class ProductManager {
 
     deleteProduct = async (id) => {
         const products = await this.getProducts();
-        const newProducts = products.filter((prod) => prod.id !== id);
-        await fs.promises.writeFile(this.path, JSON.stringify(newProducts));
+        const newProductsArray = products.filter((p) => p.id !== id);
+        await fs.promises.writeFile(this.path, JSON.stringify(newProductsArray));
         console.log("product deleted");
     }
 
     #generarId = (products) => {
-        const id = this.products.length === 0 ? 1 : this.products[this.products.length - 1].id + 1
+        let id = this.products.length === 0 ? 1 : this.products[this.products.length - 1].id + 1
         return id
     }
 }
@@ -98,7 +97,10 @@ async function add() {
     await manager.addProduct('Monitores Studio Rokit', 'Monitores de Studio alto rendimiento', 250, 'Imágen No Disponible', 23)
 
     
+    const products = await manager.getProducts();
 }
+
+add()
 
 async function getById() {
     const manager = new ProductManager(path);
@@ -106,9 +108,11 @@ async function getById() {
     console.log(await manager.getProductById(11))
 }
 
+getById()
+
 async function deleteById() {
     const manager = new ProductManager(path);
-    await manager.deleteProduct(1);
+    await manager.deleteProduct(3);
 }
 
 async function deleteAll() {
