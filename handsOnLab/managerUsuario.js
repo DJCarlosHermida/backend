@@ -96,6 +96,6 @@ const prueba = async () => {
     // await manager.crearUsuario(usuario1)
     // const usuarios = await manager.consultarUsuarios()
     // console.log(usuarios);
-    await manager.validarUsuario('ch8', '12345')
+    await manager.validarUsuario('ch18', '12345')
 }
 prueba()
