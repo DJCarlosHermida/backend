@@ -44,7 +44,7 @@ class ProductManager {
         const newProduct = { id: this.id, ...product }
         this.products.push(newProduct)
 
-        let data =  JSON.stringify(this.products);
+        let data = JSON.stringify(this.products);
         fs.writeFileSync('productos.json', data);
     }
 
@@ -99,11 +99,15 @@ async function add() {
     await manager.addProduct('Iluminación LED', 'Todo en iluminación para fiestas', 950, 'Imágen No Disponible', 13),
     await manager.addProduct('Monitores Studio Rokit', 'Monitores de Studio alto rendimiento', 250, 'Imágen No Disponible', 23),
     await manager.addProduct('Pantalla Gigante', 'Pantalla LED de 300 pulgadas 4k', 47250, 'Imágen No Disponible', 4)
+    await manager.addProduct('Micrófonos', 'Micrófono SHURE 58 alto rendimiento', 250, 'Imágen No Disponible', 4)
+    await manager.addProduct('Laser', 'Laser para discoteca, alta potencia color azul', 470, 'Imágen No Disponible', 4)
+    await manager.addProduct('Pista LED', 'Pista LED varios tamaños', 7250, 'Imágen No Disponible', 4)
     await manager.addProduct('DJ', 'https://djcarloshermida.com.uy', 13000, 'Imágen No Disponible', 1)
+    await manager.addProduct('Esctructura', 'Estructura en aluminio, arañas, escenarios, cabinas', 35000, 'Imágen No Disponible', 1)
     await manager.addProduct('DJ', 'Bola De Espejos', 3000, 'Imágen No Disponible', 2)
 
     const products = manager
-    
+
 }
 
 add()
