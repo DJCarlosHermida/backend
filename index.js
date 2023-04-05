@@ -1,6 +1,3 @@
-const fs = require('fs')
-const path = 'products.json'
-
 class ProductManager {
     #servicios = 0.65
     constructor(path) {

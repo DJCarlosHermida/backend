@@ -89,6 +89,8 @@ const usuario3 = {
     password: '123abc'
 }
 
+
+
 const manager = new ManagerUsuario()
 const prueba = async () => {
     // await manager.crearUsuario(usuario1)
