@@ -1,7 +1,7 @@
 const fs = require('fs')
 const path = 'productos.json'
 
-fs.promises.writeFile('info.json', JSON.stringify(info))
+//fs.promises.writeFile('info.json', JSON.stringify(info))
 
 class ProductManager {
     #servicios = 0.65
@@ -13,10 +13,10 @@ class ProductManager {
 
     getProducts = async () => {
         if (fs.existsSync(path)) {
-            const fileRead = await fs.promises.readFile('productos.json', 'utf-8')
-            const product = JSON.parse(fileRead.toString())
+            const products = await fs.promises.readFile(this.path, 'utf-8')
+            const product = JSON.parse(products.toString())
 
-            return (product)
+            return JSON.parse(products)
         } else {
             console.log('El Archivo No Existe');
             return []
@@ -44,33 +44,29 @@ class ProductManager {
         this.id++
         const newProduct = { id: this.id, ...product }
         this.products.push(newProduct)
-<<<<<<< HEAD
-
         let data = JSON.stringify(this.products);
         fs.writeFileSync('productos.json', data);
-=======
->>>>>>> 63046bbc7d9b67cbda57e857d837c707031f00a8
     }
 
     getProductById = async (id) => {
-        const products = await this.getProducts()
-        const product = products.find(product => product.id === id)
+        const productsFile = await this.getProducts()
+        const product = productsFile.find(product => product.id === id)
         if (product) {
-            return (product)
+            return product
         } else {
             return ('El Producto No Exíste')
         }
     }
 
     updateProduct = async (id, obj) => {
-        const products = await this.getProducts();
-        const productIn = products.findIndex((p) => p.id === id);
+        const productsFile = await this.getProducts();
+        const productIn = productsFile.findIndex((p) => p.id === id);
         if (productIn === -1) {
-            return console.log("Product Not Found");
+            return console.log("No se encontró producto");
         }
-        const productUpdated = { ...products[productIn], ...obj };
-        products.splice(productIn, 1, productUpdated);
-        await fs.promises.writeFile(this.path, JSON.stringify(products))
+        const productUpdated = { ...productsFile[productIn], ...obj };
+        productsFile.splice(productIn, 1, productUpdated);
+        await fs.promises.writeFile(this.path, JSON.stringify(productsFile))
         return console.log("Product UpDated");
     }
 
@@ -87,7 +83,8 @@ class ProductManager {
         const products = await this.getProducts();
         const newProductsArray = products.filter((p) => p.id !== id);
         await fs.promises.writeFile(this.path, JSON.stringify(newProductsArray));
-        console.log("product deleted");
+        console.log("product deleted")
+        console.log(products)
     }
 
     #generarId = (products) => {
@@ -98,16 +95,10 @@ class ProductManager {
 
 async function add() {
     const manager = new ProductManager(path)
-<<<<<<< HEAD
-    manager.addProduct('Parlantes JBL', 'Parlantes JBL de 15"', 13000, 'Imágen No Disponible', 60)
-    manager.addProduct('Pantalla Gigante', 'Ideal para proyectar videoClips durante la fiesta', 23000, 'Imágen No Disponible', 2)
-    manager.addProduct('Iluminación LED', 'Todo en iluminación para fiestas', 950, 'Imágen No Disponible', 13)
-    manager.addProduct('Monitores Studio Rokit', 'Monitores de Studio alto rendimiento', 250, 'Imágen No Disponible', 23)
-=======
-    await manager.addProduct('Parlantes JBL', 'Parlantes JBL de 15"', 1000000, 'Imágen No Disponible', 60),
-    await manager.addProduct('Pantalla Gigante', 'Ideal para proyectar videoClips durante la fiesta', 23000, 'Imágen No Disponible', 2),
-    await manager.addProduct('Iluminación LED', 'Todo en iluminación para fiestas', 950, 'Imágen No Disponible', 13),
-    await manager.addProduct('Monitores Studio Rokit', 'Monitores de Studio alto rendimiento', 250, 'Imágen No Disponible', 23),
+    await manager.addProduct('Parlantes', 'Parlantes JBL de 15"', 1000000, 'Imágen No Disponible', 60)
+    await manager.addProduct('Pantalla Gigante', 'Ideal para proyectar videoClips durante la fiesta', 23000, 'Imágen No Disponible', 2)
+    await manager.addProduct('Iluminación', 'Todo en iluminación para fiestas', 950, 'Imágen No Disponible', 13)
+    await manager.addProduct('Monitores Studio Rokit', 'Monitores de Studio alto rendimiento', 250, 'Imágen No Disponible', 23)
     await manager.addProduct('Pantalla Gigante', 'Pantalla LED de 300 pulgadas 4k', 47250, 'Imágen No Disponible', 4)
     await manager.addProduct('Micrófonos', 'Micrófono SHURE 58 alto rendimiento', 250, 'Imágen No Disponible', 4)
     await manager.addProduct('Laser', 'Laser para discoteca, alta potencia color azul', 470, 'Imágen No Disponible', 4)
@@ -115,20 +106,18 @@ async function add() {
     await manager.addProduct('DJ', 'https://djcarloshermida.com.uy', 13000, 'Imágen No Disponible', 1)
     await manager.addProduct('Esctructura', 'Estructura en aluminio, arañas, escenarios, cabinas', 35000, 'Imágen No Disponible', 1)
     await manager.addProduct('DJ', 'Bola De Espejos', 3000, 'Imágen No Disponible', 2)
->>>>>>> 204b629dbf0373286ae2550d690624214ef282af
-
-<<<<<<< HEAD
-    const products = manager
-
-=======
-    await manager.addProduct(product1);
-    await manager.addProduct(product2);
-    await manager.addProduct(product3);
-    await manager.addProduct(product4);
-    await manager.addProduct(product5);
-    const products = await manager.getProducts();
-    console.log(products);
->>>>>>> 63046bbc7d9b67cbda57e857d837c707031f00a8
+    await manager.addProduct('Micrófonos', 'Micrófono Berhinger B!', 1000, 'Imágen No Disponible', 2)
+    await manager.addProduct('Pantalla LED', 'Pantalla gigante LED', 13000, 'Imágen No Disponible', 2)
+    await manager.addProduct('Parlantes', 'Parlantes JBL 18"', 12000, 'Imágen No Disponible', 2)
+    await manager.addProduct('DJ', 'Máquina de humo', 160, 'Imágen No Disponible', 2)
+    await manager.addProduct('DJ', 'Tachos LED', 1500, 'Imágen No Disponible', 2)
+    await manager.addProduct('Parlantes', 'Monitores', 2000, 'Imágen No Disponible', 2)
+    await manager.addProduct('Iluminación', 'Robóticas', 3000, 'Imágen No Disponible', 2)
+    await manager.addProduct('DJ', 'Karaoke', 4000, 'Imágen No Disponible', 2)
+    await manager.addProduct('Iluminación', 'Iluminación', 5000, 'Imágen No Disponible', 2)
+    await manager.addProduct('DJ', 'Servicio de Discoteca', 13000, 'Imágen No Disponible', 2)
+    await manager.addProduct('DJ', 'Servicio de dj', 13000, 'Imágen No Disponible', 30)
+    await manager.addProduct('DJ', 'Iluminación', 13000, 'Imágen No Disponible', 51)
 }
 
 add()
@@ -136,14 +125,13 @@ add()
 async function getById() {
     const manager = new ProductManager(path);
     console.log(await manager.getProductById(1))
-    console.log(await manager.getProductById(7))
 }
 
 getById()
 
 async function deleteById() {
     const manager = new ProductManager(path);
-    await manager.deleteProduct(1);
+    await manager.deleteProduct();
 }
 
 deleteById()
@@ -156,7 +144,7 @@ async function deleteAll() {
 
 async function update() {
     const manager = new ProductManager(path);
-    await manager.updateProduct(6, { stock: 20000 })
+    await manager.updateProduct(21, { stock: 1 })
 }
 
 update()

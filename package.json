@@ -16,9 +16,6 @@
   "bugs": {
     "url": "https://github.com/DJCarlosHermida/proyecto_backend/issues"
   },
-<<<<<<< HEAD
-  "homepage": "https://github.com/DJCarlosHermida/proyecto_backend#readme"
-=======
   "homepage": "https://github.com/DJCarlosHermida/proyecto_backend#readme",
   "dependencies": {
     "bcrypt": "^5.1.0",
@@ -28,5 +25,4 @@
   "devDependencies": {
     "axios": "^1.3.4"
   }
->>>>>>> 76db20a336f60383309bf29bf4fe112135846565
 }
