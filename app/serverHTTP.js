@@ -4,7 +4,7 @@ import http from 'http'
 
 const server = http.createServer((req, res) => {
     console.log(req.url);
-    res.end ('Saludos desde backend')
+    res.end ('Gretting from backend')
 })
 
 server.listen(8080, ()=> {

@@ -24,8 +24,7 @@ class ManagerUsuario {
             const newUser = { id, ...obj }
 
             newUser.key = crypto.randomBytes(128).toString('base64')
-
-            newUser.password = crypto
+             newUser.password = crypto
                 .createHmac('sha256', newUser.key)
                 .update(newUser.password)
                 .digest('hex')
@@ -42,17 +41,17 @@ class ManagerUsuario {
         const users = await this.consultarUsuarios()
         const user = users.find(u => u.username === username)
         if (!user) {
-            console.log('Usuario o contraseña no válidas');
+            console.log('Usuario o contraseña no válido');
         } else {
-            const cryptoNewPass = crypto
+            const cryptoPass = crypto
                 .createHmac('sha256', user.key)
                 .update(password)
                 .digest('hex')
 
-            if (user.password === cryptoNewPass) {
+            if (user.password === cryptoPass) {
                 console.log('Logueado');
             } else {
-                console.log('Usuario o contraseña no válidas');
+                console.log('Usuario o contraseña no válido');
             }
         }
     }
@@ -71,31 +70,31 @@ class ManagerUsuario {
 const usuario1 = {
     nombre: 'Carlos',
     apellido: 'Hermida',
-    username: 'ch18',
-    password: '12345'
+    username: 'chermida',
+    password: '123456'
 }
 
 const usuario2 = {
-    nombre: 'Lucía',
+    nombre: 'Lucia',
     apellido: 'Pons',
-    username: 'lupo',
-    password: 'abcde'
+    username: 'lupons',
+    password: 'abcdef'
 }
 
 const usuario3 = {
-    nombre: 'Edgardo',
-    apellido: 'Hermida',
-    username: 'lalo',
+    nombre: 'Emilio',
+    apellido: 'López',
+    username: 'elopèz',
     password: '123abc'
 }
 
-
-
 const manager = new ManagerUsuario()
 const prueba = async () => {
-    // await manager.crearUsuario(usuario1)
-    // const usuarios = await manager.consultarUsuarios()
-    // console.log(usuarios);
-    await manager.validarUsuario('ch18', '12345')
+    await manager.crearUsuario(usuario3)
+    //await manager.crearUsuario(usuario2)
+    //await manager.crearUsuario(usuario3)
+    const usuarios = await manager.consultarUsuarios()
+    //console.log(usuarios);
+    await manager.validarUsuario('chermida', '123456')
 }
 prueba()
