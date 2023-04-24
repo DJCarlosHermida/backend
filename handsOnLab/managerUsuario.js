@@ -90,11 +90,11 @@ const usuario3 = {
 
 const manager = new ManagerUsuario()
 const prueba = async () => {
-    await manager.crearUsuario(usuario3)
+    //await manager.crearUsuario(usuario3)
     //await manager.crearUsuario(usuario2)
     //await manager.crearUsuario(usuario3)
-    const usuarios = await manager.consultarUsuarios()
+    //const usuarios = await manager.consultarUsuarios()
     //console.log(usuarios);
-    await manager.validarUsuario('chermida', '123456')
+    await manager.validarUsuario('lupons', 'abcdf')
 }
 prueba()
