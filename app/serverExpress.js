@@ -4,8 +4,8 @@ const app = express()
 
 app.get('/', (req, res) => {
     console.log(req.query);
-    const { limite, orden } = req.query
-    console.log(limite, orden);
+    const { limit, order } = req.query
+    console.log(limit, order);
     res.send ('Welcome from Express')
 })
 
@@ -17,8 +17,6 @@ app.get('/products/', (req, res) => {
 app.get('/products/:pid', (req, res) => {
     res.send ('List of Users')
 })
-
-
 
 app.listen(8080, ()=> {
     console.log('Listening to 8080 port Express')
