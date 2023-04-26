@@ -19,10 +19,10 @@ app.post('/products', async(req, res) => {
     res.json({message: 'Producto Created', prodct: newProduct })
 })
 
-app.put('/products/:pid', async (req, res) => {
-    const { idProd: pid } = req.params
+app.put('/products/:idProd', async (req, res) => {
+    const { idProd: idProd } = req.params
     const obj = req.body
-    const product = await productManager.updateProduct(+pid, obj)
+    const product = await productManager.updateProduct(+idProd, obj)
     res.json({ product })
   })
   
@@ -32,8 +32,8 @@ app.put('/products/:pid', async (req, res) => {
   })
   
   app.delete('/products/:pid', async (req, res) => {
-    const { idProd: pid } = req.params
-    const message = await productManager.deleteProductById(+pid)
+    const { idProd: idProd } = req.params
+    const message = await productManager.deleteProductById(+idProd)
     res.json({ message })
   })
 

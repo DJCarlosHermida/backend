@@ -14,9 +14,9 @@ export default class ProductManager {
         }
     }
 
-    async getProductById(pbi) {
+    async getProductById(pid) {
         const productsFile = await this.getProducts()
-        const product = productsFile.find((p) => p.id === pbi)
+        const product = productsFile.find((p) => p.id === pid)
         if (product) {
             return product
         } else {
@@ -42,9 +42,9 @@ export default class ProductManager {
         }
     }
 
-    async deleteProductById(pbi) {
+    async deleteProductById(pid) {
         const productsFile = await this.getProducts()
-        const productIndex = productsFile.findIndex((p) => p.id === pbi)
+        const productIndex = productsFile.findIndex((p) => p.id === pid)
         if (productIndex === -1) {
             return 'Product does not exist'
         } else {
@@ -54,14 +54,14 @@ export default class ProductManager {
         }
     }
 
-    async updateProduct(pbi, obj) {
+    async updateProduct(pid, obj) {
         const productsFile = await this.getProducts()
-        const product = productsFile.find((p) => p.id === pbi)
+        const product = productsFile.find((p) => p.id === pid)
         if (!product) {
             return 'Product does not exist'
         } else {
             const updatedProduct = { ...product, ...obj }
-            const productIndex = productsFile.findIndex((p) => p.id === pbi)
+            const productIndex = productsFile.findIndex((p) => p.id === pid)
             productsFile.splice(productIndex, 1, updatedProduct)
             await fs.promises.writeFile(this.path, JSON.stringify(productsFile))
             return 'Product updated'
