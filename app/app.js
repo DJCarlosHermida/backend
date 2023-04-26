@@ -23,7 +23,7 @@ app.get('/products/:idProd', async (req, res) => {
   if (product) {
     res.json(product)
   } else {
-    res.status(404).json({error: "NO PRODUCT"})
+    res.status(404).json({error: "NO PRODUCT,  Sorry"})
   }
 })
 
