@@ -42,9 +42,9 @@ export default class ProductManager {
         }
     }
 
-    async deleteProductById(pid) {
+    async deleteProductById(idProd) {
         const productsFile = await this.getProducts()
-        const productIndex = productsFile.findIndex((p) => p.id === pid)
+        const productIndex = productsFile.findIndex((p) => p.id === idProd)
         if (productIndex === -1) {
             return 'Product does not exist'
         } else {
