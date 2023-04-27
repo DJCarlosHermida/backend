@@ -16,6 +16,8 @@ app.get('/products/', (req, res) => {
 
 app.get('/products/:pid', (req, res) => {
     res.send ('Product By ID')
+app.get('/products/:idProd', (req, res) => {
+    res.send ('Products By ID')
 })
 
 app.listen(8080, ()=> {

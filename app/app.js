@@ -6,10 +6,29 @@ const productManager = new ProductManager('./products.json')
 app.use(express.json())
 app.use(express.urlencoded( {extended: true}) )
 
+app.get('/', async (req, res) => {
+  res.send ('Welcome from Express')
+})
+
 app.get('/products', async (req, res) => {
     const products = await productManager.getProducts()
+    const limit = req.query.limit
+    if (!limit) {
+      res.json(products)
+    } else {
+      const limitProd = products.slice( 0, limit )
+      res.json(limitProd)
+    }
+})
 
-    res.json({ products })
+app.get('/products/:idProd', async (req, res) => {
+  const { idProd } = req.params
+  const product = await productManager.getProductById( + idProd )
+  if (product) {
+    res.json(product)
+  } else {
+    res.status(404).json({error: "NO PRODUCT,  Sorry"})
+  }
 })
 
 app.post('/products', async(req, res) => {
