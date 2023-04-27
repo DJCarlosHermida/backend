@@ -15,9 +15,10 @@ app.get('/products/', (req, res) => {
 })
 
 app.get('/products/:pid', (req, res) => {
-    res.send ('List of Users')
+    res.send ('Product By ID')
 })
 
 app.listen(8080, ()=> {
-    console.log('Listening to 8080 port Express')
+    console.log('Listening to 8080 port from Express')
 })
+
