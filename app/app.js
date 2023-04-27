@@ -6,6 +6,10 @@ const productManager = new ProductManager('./products.json')
 app.use(express.json())
 app.use(express.urlencoded( {extended: true}) )
 
+app.get('/', async (req, res) => {
+  res.send ('Welcome from Express')
+})
+
 app.get('/products', async (req, res) => {
     const products = await productManager.getProducts()
     const limit = req.query.limit
