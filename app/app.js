@@ -6,11 +6,15 @@ const app = express()
 app.use(express.json())
 app.use(express.urlencoded( {extended: true}) )
 
-app.use("/api/", routers)
+app.get("/", async (req, res) => {
+  res.send("Welcome from Express")
+ })
 
-app.get('/', async (req, res) => {
-  const random = Math.floor(Math.random() * 16 )
-  res.json({random})
+app.use("/api/", routers)
+app.get('/api/', async (req, res) => {
+  // const random = Math.floor(Math.random() * 16 )
+  // res.json({random})
+  res.send("Welcome from Backend")
 })
 
 app.listen(8080, () => {
