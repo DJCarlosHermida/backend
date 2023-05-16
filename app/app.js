@@ -6,9 +6,6 @@ const app = express()
 app.use(express.json())
 app.use(express.urlencoded( {extended: true}) )
 
-
-// Routers
-
 app.use("/api/", routers)
 
 app.get('/', async (req, res) => {
