@@ -25,7 +25,7 @@ router.get('/idCart', async (req, res) => {
     }
 })
 
-router.post('/', async(req, res) => {
+router.post('/cart', async(req, res) => {
     const obj = req.body
     console.log('information', obj);
     const newCart = await CartManager.crateCart(obj)

@@ -29,10 +29,10 @@ export default class CartManager {
             if (this.#validateParams(obj)) {
                 const cartFile = await this.getCarts()
                 const id = this.#createId(cartFile)
-                const code = this.#generateCode()
+                const code = this.#generateCode(cartFile)
                 let newCart = {}
-                if (!obj.code) {
-                    newCart = { id, ...obj }
+                if (!obj.id) {
+                    newCart = { id, code, ...obj }
                 }
                 cartFile.push(newCart)
                 await fs.promises.writeFile(this.path, JSON.stringify(cartFile))
@@ -44,7 +44,7 @@ export default class CartManager {
         }
 
     }
-    
+
     #createId(carts) {
         let id = 0
         if (carts.length === 0) {
@@ -71,9 +71,9 @@ export default class CartManager {
         if (carts.id && carts.code) {
             return true
         } else {
-            if (!cart.id) {
+            if (!carts.id) {
                 throw new Error('Cart Id missing')
-            } else if (!cart.code) {
+            } else if (!carts.code) {
                 throw new Error('Cart Code Missing')
             }
         }
