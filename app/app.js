@@ -12,8 +12,6 @@ app.get("/", async (req, res) => {
 
 app.use("/api/", routers)
 app.get('/api/', async (req, res) => {
-  // const random = Math.floor(Math.random() * 16 )
-  // res.json({random})
   res.send("Welcome from Backend")
 })
 
