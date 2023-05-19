@@ -17,7 +17,7 @@ router.get('/', async (req, res) => {
 
 router.get('/idCart', async (req, res) => {
     const {idCart} = req.params
-    const cart = await cartManager.getCartsById( + idCart)
+    const cart = await cartManager.getCartsById(+idCart)
     if (cart) {
         res.json(cart)
     } else {
@@ -25,9 +25,15 @@ router.get('/idCart', async (req, res) => {
     }
 })
 
-router.post('/carts', async(req, res) => {
-    const newCart = await CartManager.crateCart()
+router.post('/new-cart', async(req, res) => {
+    const newCart = await cartManager.createCart()
     res.json( {message: 'Cart Created', cart: newCart})
 })
+
+router.post('/cart/:cartId/product/:productId', async(req, res) => {
+    const { cartId, productId } = req.params;
+    const cart = await cartManager.addProducts(cartId, +productId)
+    res.json( {message: 'product added', cart: cart})
+});
 
 export default router

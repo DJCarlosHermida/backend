@@ -15,29 +15,24 @@ export default class CartManager {
         }
     }
 
-    async getCartsById(idCart) {
+    async getCartById(idCart) {
         const cartsFile = await this.getCarts()
-        const cart = cartsFile.find((c) => c.id === idCart)
-        if (cart) {
-            return cart
-        } else {
-            return 'Cart not found'
-        }
+        return cartsFile.find((c) => c.id === idCart)
     }
+
 
     async createCart() {
         try {
-          const cartFile = await this.getCarts()
-          const newCart = {id: this.#createId(cartFile), products: []};
-          cartFile.push(newCart)
-      
-          await fs.promises.writeFile(this.path, JSON.stringify(cartFile))
-          return newCart
+            const cartFile = await this.getCarts()
+            const newCart = { id: this.#createId(cartFile), products: [] };
+            cartFile.push(newCart)
+            await fs.promises.writeFile(this.path, JSON.stringify(cartFile))
+            return newCart
         } catch (error) {
-          console.log(`Error Creating Cart: ${error.message}`)
+            console.log(`Error Creating Cart: ${error.message}`)
         }
-      }
-        
+    }
+
     #createId(carts) {
         let id = 0
         if (carts.length === 0) {
@@ -47,5 +42,36 @@ export default class CartManager {
         )
         return id
     }
-  
+
+    async addProducts(cartId, productId) {
+        const cart = await this.getCartById(cartId);
+
+        if (typeof cart === 'undefined') {
+            const newCart = await this.createCart();
+            console.log(newCart);
+            newCart?.products.push({ id: productId, quantity: 1 });
+
+            const carts = await this.getCarts()
+            const newCarts = [...carts, newCart];
+            await fs.promises.writeFile(this.path, JSON.stringify(newCarts))
+
+            return newCart;
+        }
+
+        const product = cart.products.find(product => product.id === productId);
+
+        if (product) {
+            const updateProduct = { ...product, quantity: product.quantity + 1 };
+            cart.products = [...cart.products, updateProduct];
+        } else {
+            cart.product.push({ id: productId, quantity: 1 });
+        }
+
+        const carts = await this.getCarts()
+        const newCarts = [...carts, ...newCart];
+        await fs.promises.writeFile(this.path, JSON.stringify(newCarts))
+
+        return cart;
+    }
+
 }
