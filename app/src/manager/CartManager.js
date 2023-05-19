@@ -3,6 +3,7 @@ import fs from 'fs'
 export default class CartManager {
     constructor(path) {
         this.path = path
+        this.id = this.#createId
     }
 
     async getCarts() {
@@ -24,27 +25,19 @@ export default class CartManager {
         }
     }
 
-    async createCart(obj) {
+    async createCart() {
         try {
-            if (this.#validateParams(obj)) {
-                const cartFile = await this.getCarts()
-                const id = this.#createId(cartFile)
-                const code = this.#generateCode(cartFile)
-                let newCart = {}
-                if (!obj.id) {
-                    newCart = { id, code, ...obj }
-                }
-                cartFile.push(newCart)
-                await fs.promises.writeFile(this.path, JSON.stringify(cartFile))
-                return newCart
-            }
-
+          const cartFile = await this.getCarts()
+          const newCart = {id: this.#createId(cartFile), products: []};
+          cartFile.push(newCart)
+      
+          await fs.promises.writeFile(this.path, JSON.stringify(cartFile))
+          return newCart
         } catch (error) {
-            console.log(`Error Creating Cart: ${error.message}`);
+          console.log(`Error Creating Cart: ${error.message}`)
         }
-
-    }
-
+      }
+        
     #createId(carts) {
         let id = 0
         if (carts.length === 0) {
@@ -54,28 +47,5 @@ export default class CartManager {
         )
         return id
     }
-
-    #generateCode(codeLength = 15) {
-        const number = "0123456789"
-        const letter = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
-
-        let code = ""
-        for (let index = 0; index < codeLength; index++) {
-            const random = Math.floor(Math.random() * codeABC123.length)
-            code += codeABC123.charAt(random)
-        }
-        return code
-    }
-
-    #validateParams(carts) {
-        if (carts.id && carts.code) {
-            return true
-        } else {
-            if (!carts.id) {
-                throw new Error('Cart Id missing')
-            } else if (!carts.code) {
-                throw new Error('Cart Code Missing')
-            }
-        }
-    }
+  
 }

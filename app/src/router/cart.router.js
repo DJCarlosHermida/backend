@@ -25,10 +25,8 @@ router.get('/idCart', async (req, res) => {
     }
 })
 
-router.post('/cart', async(req, res) => {
-    const obj = req.body
-    console.log('information', obj);
-    const newCart = await CartManager.crateCart(obj)
+router.post('/carts', async(req, res) => {
+    const newCart = await CartManager.crateCart()
     res.json( {message: 'Cart Created', cart: newCart})
 })
 
