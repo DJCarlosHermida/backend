@@ -68,7 +68,7 @@ export default class CartManager {
         }
 
         const carts = await this.getCarts()
-        const newCarts = [...carts, ...newCart];
+        const newCarts = [...carts, ...newCarts];
         await fs.promises.writeFile(this.path, JSON.stringify(newCarts))
 
         return cart;
