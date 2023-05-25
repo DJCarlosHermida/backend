@@ -95,7 +95,7 @@ export default class ProductManager {
 
     #generateCode(codeLength = 15) {
         const number = "0123456789"
-        const letter = "ABCDEFGHIJKLMNOPQRSTUVWXYabcdefghijklmnopqrstuvwxyzZ"
+        const letter = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
         const codeABC123 = number + letter
 
         let code = ""

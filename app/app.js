@@ -12,7 +12,7 @@ app.get("/", async (req, res) => {
 
 app.use("/api/", routers)
 app.get('/api/', async (req, res) => {
-  res.send("Welcome from Backend")
+  res.send("Welcome to Backend")
 })
 
 app.listen(8080, () => {
