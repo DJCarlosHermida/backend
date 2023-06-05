@@ -1,5 +1,5 @@
 import express from "express";
-import routers from "./src/router/index.router.js";
+import routers from "./src/routes/index.router.js";
 
 const app = express()
 
@@ -12,7 +12,7 @@ app.get("/", async (req, res) => {
 
 app.use("/api/", routers)
 app.get('/api/', async (req, res) => {
-  res.send("Welcome to Backend")
+  res.send("Welcome from Backend")
 })
 
 app.listen(8080, () => {
