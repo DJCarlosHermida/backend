@@ -1,0 +1,16 @@
+{{#if users.length}}
+
+{{#each users}}
+
+<p>Artista Creado con éxito</p>
+<div>
+    Nombre: {{name}}  <br>
+    Email: {{email}} <br>
+    Contraseña: {{password}} <br>
+</div>
+</p>
+{{/each}}
+
+{{else}}
+<h3>No hay artistas registrados</h3>
+{{/if}}
