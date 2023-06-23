@@ -1,5 +1,5 @@
 const socketClient = io()
-/* hola */
+
 socketClient.on('Bienvenida', (text) => {
   socketClient.emit('Respuesta de Bienvenida', 'Gracias por la bienvenida')
 })
