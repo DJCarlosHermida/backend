@@ -31,8 +31,8 @@ const messages = []
 const socketServer = new Server(httpServer)
 
 socketServer.on('connection', (socket) => {
-  console.log('client Connected');
-  socket.on('disconnect', () => {
+  console.log('Client Connected');
+  socket.on('Disconnect', () => {
   })
 
   socket.emit(
