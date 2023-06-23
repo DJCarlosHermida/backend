@@ -1,5 +1,5 @@
 const socketClient = io()
-
+/* hola */
 socketClient.on('Bienvenida', (text) => {
   socketClient.emit('Respuesta de Bienvenida', 'Gracias por la bienvenida')
 })
@@ -14,3 +14,4 @@ formulario.onsubmit = (e) => {
 socketClient.on('allMessages',messages=>{
     console.log(messages);
 })
+

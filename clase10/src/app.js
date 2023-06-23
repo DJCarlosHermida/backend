@@ -41,7 +41,7 @@ socketServer.on('connection', (socket) => {
   )
   socket.on('respuesta Welcome', (response) => {
   })
-
+// hola
   socket.on('message', (message) => {
     messages.push({ clientId: socket.id, message })
     socketServer.emit('allMessages', messages)
