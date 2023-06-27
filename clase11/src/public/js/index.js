@@ -31,7 +31,6 @@ formulario.onsubmit = (e) => {
     const info = {
         nombre: usuario,
         mensaje: inputMensaje.value
-
     }
     socketClient.emit('mensaje', info)
 }
