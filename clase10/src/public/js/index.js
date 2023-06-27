@@ -14,4 +14,3 @@ formulario.onsubmit = (e) => {
 socketClient.on('allMessages',messages=>{
     console.log(messages);
 })
-
