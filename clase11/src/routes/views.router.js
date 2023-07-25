@@ -6,6 +6,4 @@ router.get('/', (req, res) => {
     res.render('chat')
 })
 
-
-
 export default router
