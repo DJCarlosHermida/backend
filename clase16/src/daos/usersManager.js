@@ -19,4 +19,19 @@ export default class UsersManager {
             console.log(error);
         }
     }
-}
+
+    async paginateFun(limit, page ){
+        try {
+            const result = await usersModel.paginate({gender: "Male"}, {limit, page})
+            const info = {
+                count: result.totalDocs,
+                pages: result.totalPages,
+                next: result.hasNextPage ? `http://localhost:8080/users/paginate?page=${result.NextPage}` : null, 
+                prev: result.hasPrevPage ? `http://localhost:8080/users/paginate?page=${result.PrevPage}` : null
+            }
+            return { info, results: result.docs }
+        } catch (error) {
+            console.log(error);
+        } 
+    }
+} 

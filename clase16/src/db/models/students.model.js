@@ -1,7 +1,6 @@
 import mongoose from 'mongoose'
-import mongoosePaginate from 'mongoose-paginate-v2'
 
-const usersSchema = new mongoose.Schema({
+const studentsSchema = new mongoose.Schema({
     first_name: {
         type: String,
     },
@@ -15,8 +14,9 @@ const usersSchema = new mongoose.Schema({
     gender: {
         type: String,
     },
+    calificacion: {
+        type: Number,
+    }
 })
 
-usersSchema.plugin(mongoosePaginate)
-
-export const usersModel = mongoose.model('Users', usersSchema)
+export const studentsModel = mongoose.model('Students', studentsSchema)
