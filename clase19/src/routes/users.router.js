@@ -36,7 +36,7 @@ router.post('/', (req, res) => {
     } else {
         req.session['isAdmin'] = false
     }
-    req.session['logged'] = true
+    req.session['isAdmin'] = true
     res.json({ message: 'User found' })
 })
 */
