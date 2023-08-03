@@ -6,6 +6,11 @@ import { __dirname } from './utills.js'
 import handlebars from 'express-handlebars'
 import viewsRouter from './routes/views.router.js'
 import usersRouter from './routes/users.router.js'
+import jwtRouter from './routes/jwt.router.js'
+import './db/configDB.js'
+import './passport/passportStrategies.js'
+import passport from 'passport'
+import mongoStore from 'connect-mongo'
 
 const app = express()
 
@@ -20,8 +25,11 @@ app.set('view engine', 'handlebars')
 /* COOKIE */
 app.use(cookieParser())
 
+/* SESSION */
 const fileStore = FileStore(session)
 
+/* FILESTORE */
+/*
 app.use(
     session({
     store: new fileStore({
@@ -30,13 +38,34 @@ app.use(
     secret: 'SessionKey',
     cookie: {
         maxAge: 120000,
-    }
+    },
 })
 )
+*/
+/* MONGODB */
+app.use(
+    session({
+        store: new mongoStore({
+            mongoUrl:
+            // FALTA URL MONGO
+            ''
+        }),
+        secret: 'SessionKey',
+        cookie: {
+            maxAge: 120000
+        },
+    })
+)
+
+/* PASSPORT */
+app.use(passport.initialize())
+app.use(passport.session())
+
 
 /* ROUTES */
 app.use('/views', viewsRouter)
 app.use('/users', usersRouter)
+app.use('/jwt', jwtRouter)
 
 app.listen(8080, () => {
     console.log('Listening to 8080 PORT');
