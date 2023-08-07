@@ -22,10 +22,15 @@ const users = [
   {
     username: 'renato',
     password: '12345'
+  },
+  {
+    username: 'facundo10',
+    password: 'facu10'
   }
 ]
 // FILESTORE
-/*router.post('/', (req, res) => {
+/*
+router.post('/', (req, res) => {
     const { username, password } = req.body
     const user = users.find(
         (u) => u.username === username && u.password === password)
@@ -34,7 +39,7 @@ const users = [
     }
     req.session['username'] = username
     req.session['password'] = password
-    if (users === 'admin_dj' && password === 'admin123'){
+    if (users === 'admin@dj' && password === 'admin123'){
         req.session['isAdmin'] = true
     } else {
         req.session['isAdmin'] = false
@@ -58,7 +63,7 @@ router.post('/', async (req, res) => {
   }
   req.session['email'] = email
   req.session['password'] = password
-  if (email === 'admin@coder' && password === 'admin12345') {
+  if (email === 'admin@dj' && password === 'admin123') {
     req.session['isAdmin'] = true
   } else {
     req.session['isAdmin'] = false
