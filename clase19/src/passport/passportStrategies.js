@@ -3,14 +3,14 @@ import { Strategy as LocalStrategy } from 'passport-local'
 import { Strategy as GithubStrategy } from 'passport-github2'
 import { ExtractJwt, Strategy as JWTStrategy } from 'passport-jwt'
 import { usersModel } from '../db/models/users.model.js'
-import { compareData, hashData } from '../utils.js'
+import { compareData, hashData } from '../utills.js'
 
 const secretKeyJWT = 'secretJWT'
 // LOCAL
 passport.use(
-  'login',
+  'login', 
   new LocalStrategy(
-    {
+    { 
       usernameField: 'email',
     },
     async (email, password, done) => {
@@ -19,8 +19,7 @@ passport.use(
         return done(null, false)
       }
       const isPassword = await compareData(password, user.password)
-      //console.log('password',isPassword);
-      if (!isPassword) {
+      if (!isPassword) { 
         return done(null, false)
       }
 
@@ -90,6 +89,7 @@ passport.use(
     }
   )
 )
+
 passport.serializeUser((user, done) => {
   try {
     done(null, user.id)

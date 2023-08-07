@@ -1,4 +1,5 @@
 import jwt from 'jsonwebtoken'
+import { generateToken } from '../utills.js'
 
 const secretKeyJWT = 'secretJWT'
 export const jwtValidation = (req, res, next) => {

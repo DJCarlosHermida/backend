@@ -47,8 +47,8 @@ app.use(
     session({
         store: new mongoStore({
             mongoUrl:
-            // FALTA URL MONGO
-            ''
+            // FALTA URI MONGO
+            'mongodb+srv://djcarloshermida:djmongodb@djcarloshermida.iiimagn.mongodb.net/mongoose1DB?retryWrites=true&w=majority'
         }),
         secret: 'SessionKey',
         cookie: {
