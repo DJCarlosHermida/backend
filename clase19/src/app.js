@@ -25,7 +25,7 @@ app.set('view engine', 'handlebars')
 /* COOKIE */
 app.use(cookieParser())
 
-/* SESSION */
+/* SESSION */ 
 const fileStore = FileStore(session)
 
 /* FILESTORE */
