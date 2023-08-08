@@ -22,7 +22,6 @@ passport.use(
       if (!isPassword) { 
         return done(null, false)
       }
-
       done(null, user)
     }
   )
@@ -53,8 +52,8 @@ passport.use(
   'github',
   new GithubStrategy(
     {
-      clientID: 'Iv1.2136dafc84cff159',
-      clientSecret: 'fb0f0292737d1960cacbfde4dc60f52b1abccf40',
+      clientID: 'Iv1.56d17943cfabc4d1',
+      clientSecret: 'd2ecc2474aa395c5465ff9af34f6e3f8784a4535',
       callbackURL: 'http://localhost:8080/users/github',
     },
     async (accessToken, refreshToken, profile, done) => {
