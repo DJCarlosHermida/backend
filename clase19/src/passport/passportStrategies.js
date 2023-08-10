@@ -6,6 +6,7 @@ import { usersModel } from '../db/models/users.model.js'
 import { compareData, hashData } from '../utills.js'
 
 const secretKeyJWT = 'secretJWT'
+
 // LOCAL
 passport.use(
   'login', 

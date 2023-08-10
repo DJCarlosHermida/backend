@@ -13,12 +13,14 @@ if(verifiedUser){
 }
 
 //COOKIE
-// export const jwtValidation = (req, res, next) => {
-//   console.log(req.cookies)
-//   const token = req.cookies.token
-//   const verifiedUser = jwt.verify(token, secretKeyJWT)
-//   if (verifiedUser) {
-//     req.user = verifiedUser
-//     next()
-//   }
-// }
+/*
+export const jwtValidation = (req, res, next) => {
+  console.log(req.cookies)
+  const token = req.cookies.token
+  const verifiedUser = jwt.verify(token, secretKeyJWT)
+  if (verifiedUser) {
+    req.user = verifiedUser
+    next()
+  }
+}
+*/
