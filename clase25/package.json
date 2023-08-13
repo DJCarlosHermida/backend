@@ -1,0 +1,17 @@
+{
+  "name": "clase25",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start:dev": "node src/index.js development",
+    "start:test": "node src/index.js test"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "commander": "^11.0.0"
+  }
+}
