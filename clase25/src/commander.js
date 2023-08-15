@@ -1,4 +1,6 @@
 import { program } from 'commander'
+import config from './config.js';
+//import dotenv from 'dotenv'
 
 program
 .option('-m, --mode <mode>', 'Ambient', 'Development')
@@ -9,3 +11,6 @@ program
 console.log(process.argv);
 console.log(program.opts());
 //console.log(program.args);
+
+//dotenv.config()
+console.log(config.PORT)    
