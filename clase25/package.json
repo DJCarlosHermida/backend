@@ -5,14 +5,15 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start:dev": "node src/index.js development",
-    "start:test": "node src/index.js test"
+    "start:dev": "node src/app.js --mode development",
+    "start:stage": "node src/app.js --mode stage"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "commander": "^11.0.0",
-    "dotenv": "^16.3.1"
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2"
   }
 }
