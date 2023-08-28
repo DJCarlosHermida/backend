@@ -1,6 +1,6 @@
 import express from 'express'
 import config from './config.js'
-import './DAL/mongoDB/'
+import './DAL/mongoDB/dbConfig.js'
 
 const app = express()
 

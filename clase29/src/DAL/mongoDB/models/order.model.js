@@ -1,20 +1,23 @@
 import mongoose from 'mongoose'
 
-const usersSchema = new mongoose.Schema({
-    name: {
-        type: String,
+const ordersSchema = new mongoose.Schema({
+    order_number: {
+        type: Number,
         required: true
     },
-    email: {
-        type: String,
-        required: true,
-        unique: true
+    business: {
+        type: mongoose.SchemaType.ObjectId,
+        ref: 'Business'
     },
-    role: {
-        type: String,
+    user: {
+        type: mongoose.SchemaType.ObjectId,
+        ref: 'Users'
+    },
+    products: [{ type: mongoose.SchemaType.ObjectId, ref: 'Products' }],
+    price: {
+        type: Number,
         required: true
-    },
-    orders: [
-        
-    ]
+    }
 })
+
+export const ordersModel = mongoose.model('Orders', ordersSchema)

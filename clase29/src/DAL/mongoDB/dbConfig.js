@@ -1,7 +1,7 @@
-import mongoose, { Error } from 'mongoose'
+import mongoose from 'mongoose'
 import config from '../../config.js'
 
-const URI = config.mongo_URI
+const URI = config.mongo_uri
 
 mongoose.connect(URI)
 .then(()=> console.log('Connected to the databases'))
