@@ -14,9 +14,7 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    orders: {
-        type: mongoose.SchemaType.ObjectId, ref: 'Orders'
-    }
+    orders: [{type: mongoose.SchemaType.ObjectId, ref: 'Orders'}],
 })
 
 export const usersModel = mongoose.model('Users', userSchema)
