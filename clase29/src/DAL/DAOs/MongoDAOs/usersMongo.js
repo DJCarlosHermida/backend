@@ -13,7 +13,7 @@ export default class UsersModel {
     async findOneById(id){
         try {
             const response = await usersModel.findById(id)
-            return response
+            return response 
         } catch (error) {
             return error
         }

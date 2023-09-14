@@ -1,0 +1,1 @@
+import { businessModel } from '../../mongoDB/models/business.model.js'
