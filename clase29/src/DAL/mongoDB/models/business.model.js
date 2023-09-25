@@ -5,7 +5,7 @@ const businessSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    products: [{ type: mongoose.SchemaType.ObjectId, ref: 'Products' }],
+    products: [{ type: mongoose.SchemaTypes.ObjectId, ref: 'Products' }],
 })
 
 export const businessModel = mongoose.model('Business', businessSchema)

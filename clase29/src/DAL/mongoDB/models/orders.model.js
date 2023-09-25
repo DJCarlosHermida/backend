@@ -6,14 +6,14 @@ const ordersSchema = new mongoose.Schema({
         required: true
     },
     business: {
-        type: mongoose.SchemaType.ObjectId,
+        type: mongoose.SchemaTypes.ObjectId,
         ref: 'Business'
     },
     user: {
-        type: mongoose.SchemaType.ObjectId,
+        type: mongoose.SchemaTypes.ObjectId,
         ref: 'Users'
     },
-    products: [{ type: mongoose.SchemaType.ObjectId, ref: 'Products' }],
+    products: [{ type: mongoose.SchemaTypes.ObjectId, ref: 'Products' }],
     price: {
         type: Number,
         required: true

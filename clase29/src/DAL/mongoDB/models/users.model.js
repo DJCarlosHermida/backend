@@ -1,6 +1,6 @@
-import mongoose, { mongo } from "mongoose"
+import mongoose from "mongoose"
 
-const userSchema = new mongoose.Schema({
+const usersSchema = new mongoose.Schema({
     name: {
         type: String,
         required: true,
@@ -14,7 +14,7 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    orders: [{type: mongoose.SchemaType.ObjectId, ref: 'Orders'}],
+    orders: [{type: mongoose.SchemaTypes.ObjectId, ref: 'Orders'}],
 })
 
-export const usersModel = mongoose.model('Users', userSchema)
+export const usersModel = mongoose.model('Users', usersSchema)
