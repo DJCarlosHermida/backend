@@ -1,9 +1,18 @@
 import mongoose from "mongoose";
 
-class ProductsMongo extends BasicMongo {
-    constructor(model){
-        super(model)
+const productsSchema = new mongoose.Schema({
+    name:{
+        type: String,
+        required: true
+    },
+    price: {
+        type: Number,
+        required: true
+    },
+    stock: {
+        type: Number,
+        required: true
     }
-}
+})
 
-export const OrdersMongo = new OrdersMongo(businessModel)
+export const productsModel = mongoose.model('Products', productsSchema)
