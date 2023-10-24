@@ -1,4 +1,4 @@
-import { ordesModel } from '../../mongoDB/models/orders.model.js'
+import { ordersModel } from '../../mongoDB/models/orders.model.js'
 import BasicMongo from './basicMongo.js';
 
 class OrdersMongo extends BasicMongo {
@@ -7,4 +7,4 @@ class OrdersMongo extends BasicMongo {
     }
 }
 
-export const OrdersMongo = new OrdersMongo(ordesModel)
+export const OrdersMongo = new OrdersMongo(ordersModel)

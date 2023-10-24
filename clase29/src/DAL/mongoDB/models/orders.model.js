@@ -13,11 +13,11 @@ const ordersSchema = new mongoose.Schema({
         type: mongoose.SchemaTypes.ObjectId,
         ref: 'Users'
     },
-    products: [{ type: mongoose.SchemaTypes.ObjectId, ref: 'Products' }],
     price: {
         type: Number,
         required: true
-    }
+    },
+    products: [{ type: mongoose.SchemaTypes.ObjectId, ref: 'Products' }]
 })
 
 export const ordersModel = mongoose.model('Orders', ordersSchema)

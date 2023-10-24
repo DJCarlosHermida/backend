@@ -1,9 +1,10 @@
 import { businessModel } from '../../mongoDB/models/business.model.js'
+import BasicMongo from './basicMongo.js';
 
-class OrdersMongo extends BasicMongo {
+class BusinessMongo extends BasicMongo {
     constructor(model){
         super(model)
     }
 }
 
-export const OrdersMongo = new OrdersMongo(businessModel)
+export const businessMongo = new BusinessMongo(businessModel)

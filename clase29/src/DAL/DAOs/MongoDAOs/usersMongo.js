@@ -1,39 +1,10 @@
 import { usersModel } from '../../mongoDB/models/users.model.js'
+import BasicMongo from './basicMongo.js';
 
-export default class UsersModel {
-    async findAll() {
-        try {
-            const response = await usersModel.find()            
-            return response
-        } catch (error) {
-            return error
-        }
+class UsersMongo extends BasicMongo {
+    constructor(model){
+        super(model)
     }
+}
 
-    async findOneById(id) {
-        try {
-            const response = await usersModel.findById(id)
-            return response 
-        } catch (error) {
-            return error
-        }
-    } 
-
-    async createOne(obj) {
-        try {
-            const response = await usersModel.create(obj)
-            return response
-        } catch (error) {
-            return error
-        }
-    }
-
-    async deleteOne(id) {
-        try {
-            const response = await usersModel.deleteOne({_id: id})
-            return response
-        } catch (error) {
-            return error
-        }
-    }
-}           
+export const usersMongo = new UsersMongo(usersModel)
