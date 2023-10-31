@@ -9,6 +9,7 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
 app.use('/business', businessRouter)
+app.use('/users', usersRouter)
 
 const PORT = config.port
 app.listen(PORT, ()=> {
